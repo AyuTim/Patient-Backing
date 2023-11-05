@@ -1,10 +1,11 @@
-import { html5qrcode}
+import { Html5QrcodeScanner } from "html5-qrcode";
+import{ useEffect, useState } from "react";
 function QR() {
 
     const [scanResult, setScanResult] = useState(null);
 
     useEffect(() => {
-        const scanner = new html5QRcodeScanner('reader', {
+        const scanner = new Html5QrcodeScanner('reader', {
             qrbox: {
                 width: 250,
                 height: 250,
