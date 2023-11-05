@@ -9,13 +9,13 @@ const Footer = () => {
             <ul class='list'>
                     <li class='list-item'>
                         <h2>Service Desk</h2>
-                        <p>(000) 000-0000</p>
+                        <p>(956) 883 7984</p>
                     </li>
                 </ul>
                 <ul class='list'>
                     <li class='list-item'>
                         <h2>Contact Email</h2>
-                        <p>placeholder@gmail.com</p>
+                        <p>Support@SwiftCare.net</p>
                     </li>
                 </ul>
             </div>
