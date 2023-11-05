@@ -6,8 +6,10 @@ function QR() {
     window.number = 123;
     const [scanResult, setScanResult] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [apiData, setApiData] = useState(null);
 
-
+    let data;
+    
     const handleSubmitForm = async (event) => {
         event.preventDefault();
 
@@ -28,7 +30,7 @@ function QR() {
 
 
             if (response.ok) {
-                const data = await response.json();
+                 data = await response.json();
                 console.log('Post successful:', data);
                 setFormSubmitted(true); // Set formSubmitted to true after successful submission
             } else {
@@ -79,13 +81,13 @@ function QR() {
                     'ngrok-skip-browser-warning': 'true',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ room_id: 1, patient_id: 1 }),  //This will change based
+                body: JSON.stringify({ room_id: scanResult, patient_id: data }), 
             });
-
-
+    
             if (response.ok) {
                 const data = await response.json();
                 console.log('Post successful:', data);
+                setApiData(data); // Set the received data
             } else {
                 console.error('Error:', response.statusText);
             }
@@ -93,33 +95,32 @@ function QR() {
             console.error('Error:', error);
         }
     };
-
-
-
+    
     return (
         <div className="QR">
-            {formSubmitted
-                ? (
-                    <div>
-                        <p>Scan Result:</p>
-                        <pre>{scanResult}</pre>
-                        <button onClick={handlePostRequest}>Submit Data</button>
-                    </div>
-                )
-                : (
-                    <div>
-                        <form onSubmit={handleSubmitForm}>
-                            <label>
-                                Upload PDF or Image:
-                                <input type="file" name="file" accept=".pdf, .jpg, .jpeg, .png" />
-                            </label>
-                            <button type="submit">Submit Form</button>
-                        </form>
-                        <div id="reader"></div>
-                    </div>
-                )
-            }
-        </div>
+
+            
+            <div>
+                <form onSubmit={handleSubmitForm}>
+                    <label>
+                        Upload PDF or Image:
+                        <input type="file" name="file" accept=".pdf, .jpg, .jpeg, .png" />
+                    </label>
+                    <button onClick={handlePostRequest}>Submit Data</button>
+                </form>
+                <div id="reader"></div>
+
+                <div>
+                <p>Scan Result:</p>
+                <pre>{scanResult}</pre>
+                
+                {apiData && <pre>Received Data: {JSON.stringify(apiData)}</pre>}
+                
+            </div>
+                <button type="submit">Submit Form</button>
+
+            </div>
+</div>
     );
 }
 
