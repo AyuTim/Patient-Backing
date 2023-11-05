@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import QR from './QR';
+import Floor from './Floor'
 
 function App() {
   return (
@@ -17,14 +18,20 @@ function App() {
         </div>
 
         <div className="QR-Tab"> <center>
-          <Link to="/QR">QR</Link>
+          <Link to="/QR">QR Code</Link>
+          <Link to="/Floor">       Floors</Link>
           </center>
         </div>
 
         <Routes>
           <Route path="/QR" element={<QR />} />
         </Routes>
+
+        <Routes>
+          <Route path="/Floor" element={<Floor />} />
+        </Routes>
       </div>
+      <script></script>
     </Router>
   );
 }
