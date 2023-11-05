@@ -63,13 +63,14 @@ function QR() {
     }, []); // Empty dependency array to only run on mount and unmount
     return (
         <div className="QR">
-            <h1>QR Code Scanning in React</h1>
             <button onClick={handlePostRequest}>Submit Data</button>
+            <h1>QR Code Scanning in React</h1>
             {scanResult
                 ? (
                     <div>
                         <p>Scan Result:</p>
                         <pre>{scanResult}</pre>
+                        <button onClick={handlePostRequest}>Submit Data</button>
                     </div>
                 )
                 : <div id="reader"></div>
