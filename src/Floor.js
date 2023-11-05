@@ -12,7 +12,7 @@ function Box({ title, content }) {
 }
 
 
-function RoomBox({ wheelchair, roomNumber, color, onClick }) {
+function RoomBox({ patients, roomNumber, color, onClick }) {
   return (
     <div
       className="room-box"
@@ -20,7 +20,7 @@ function RoomBox({ wheelchair, roomNumber, color, onClick }) {
       onClick={() => onClick(roomNumber)}
     >
       Room {roomNumber}
-      {wheelchair}
+      {patients}
     </div>
   );
 }
@@ -34,14 +34,14 @@ function RoomGrid() {
 
 
   const roomsData = [
-    { roomNumber: 101, color: '#FF6F60'},
-    { roomNumber: 102, color: '#E2E2E2'},
-    { roomNumber: 103, color: '#96E5B6'},
-    { roomNumber: 104, color: '#E2E2E2'},
-    { roomNumber: 105, color: '#EFE59B'},
-    { roomNumber: 106, color: '#96E5B6'},
-    { roomNumber: 107, color: '#FF6F60'},
-    { roomNumber: 108, color: '#EFE59B'},
+    { roomNumber: 101, color: '#FF6F60', patients: ' #1'},
+    { roomNumber: 102, color: '#E2E2E2', patients: ' #1'},
+    { roomNumber: 103, color: '#96E5B6', patients: ' #2'},
+    { roomNumber: 104, color: '#E2E2E2', patients: ' #4'},
+    { roomNumber: 105, color: '#EFE59B', patients: ' #7'},
+    { roomNumber: 106, color: '#96E5B6', patients: ' #5'},
+    { roomNumber: 107, color: '#FF6F60', patients: ' #3'},
+    { roomNumber: 108, color: '#EFE59B', patients: ' #2'},
     // Add more rooms as needed
   ];
 
@@ -52,7 +52,8 @@ function RoomGrid() {
           <RoomBox
             roomNumber={room.roomNumber}
             color={room.color}
-            wheelchair={room.wheelchair}
+
+            patients={room.patients}
             onClick={handleBoxClick}
           />
         </div>
