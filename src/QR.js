@@ -1,11 +1,44 @@
 import { Html5QrcodeScanner } from "html5-qrcode";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+
 
 function QR() {
-
-    
     window.number = 123;
     const [scanResult, setScanResult] = useState(null);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+
+    const handleSubmitForm = async (event) => {
+        event.preventDefault();
+
+
+        try {
+            const formData = new FormData(event.target);
+            const response = await fetch('https://unduly-innocent-titmouse.ngrok-free.app/register/', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: 1}),  //This will change based
+
+
+            });
+
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Post successful:', data);
+                setFormSubmitted(true); // Set formSubmitted to true after successful submission
+            } else {
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
 
     useEffect(() => {
         const scanner = new Html5QrcodeScanner('reader', {
@@ -16,32 +49,39 @@ function QR() {
             fps: 5,
         });
 
+
         scanner.render(success, error);
+
 
         function success(result) {
             scanner.clear();
             setScanResult(result);
         }
 
+
         function error(err) {
             console.warn(err);
         }
+
 
         return () => {
             scanner.clear(); // Clear scanner on component unmount
         };
     }, []);
 
+
     const handlePostRequest = async () => {
         try {
-            const response = await fetch('https://cc43-174-246-130-148.ngrok-free.app/', {
+            const response = await fetch('https://unduly-innocent-titmouse.ngrok-free.app/room-check-in/', {
                 method: 'POST',
-                mode: 'cors', 
+                mode: 'cors',
                 headers: {
                     'ngrok-skip-browser-warning': 'true',
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ room_id: 1, patient_id: window.number }), // Adjust data as needed
+                body: JSON.stringify({ room_id: 1, patient_id: 1 }),  //This will change based
             });
+
 
             if (response.ok) {
                 const data = await response.json();
@@ -54,18 +94,11 @@ function QR() {
         }
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            handlePostRequest();
-        }, 5000); // Send data every 5 seconds
 
-        return () => clearInterval(interval);
-    }, []); // Empty dependency array to only run on mount and unmount
+
     return (
         <div className="QR">
-            <button onClick={handlePostRequest}>Submit Data</button>
-            <h1>QR Code Scanning in React</h1>
-            {scanResult
+            {formSubmitted
                 ? (
                     <div>
                         <p>Scan Result:</p>
@@ -73,10 +106,27 @@ function QR() {
                         <button onClick={handlePostRequest}>Submit Data</button>
                     </div>
                 )
-                : <div id="reader"></div>
+                : (
+                    <div>
+                        <form onSubmit={handleSubmitForm}>
+                            <label>
+                                Upload PDF or Image:
+                                <input type="file" name="file" accept=".pdf, .jpg, .jpeg, .png" />
+                            </label>
+                            <button type="submit">Submit Form</button>
+                        </form>
+                        <div id="reader"></div>
+                    </div>
+                )
             }
         </div>
     );
 }
 
+
 export default QR;
+
+
+
+
+

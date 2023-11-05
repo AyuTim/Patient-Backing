@@ -34,14 +34,14 @@ function RoomGrid() {
 
 
   const roomsData = [
-    { roomNumber: 101, color: '#FF6F60', wheelchair: 1 },
-    { roomNumber: 102, color: '#E2E2E2', wheelchair: 1},
-    { roomNumber: 103, color: '#96E5B6', wheelchair: 1 },
-    { roomNumber: 104, color: '#E2E2E2', wheelchair: 1 },
-    { roomNumber: 105, color: '#EFE59B', wheelchair: 1 },
-    { roomNumber: 106, color: '#96E5B6', wheelchair: 1 },
-    { roomNumber: 107, color: '#FF6F60', wheelchair: 1 },
-    { roomNumber: 108, color: '#EFE59B', wheelchair: 1 },
+    { roomNumber: 101, color: '#FF6F60'},
+    { roomNumber: 102, color: '#E2E2E2'},
+    { roomNumber: 103, color: '#96E5B6'},
+    { roomNumber: 104, color: '#E2E2E2'},
+    { roomNumber: 105, color: '#EFE59B'},
+    { roomNumber: 106, color: '#96E5B6'},
+    { roomNumber: 107, color: '#FF6F60'},
+    { roomNumber: 108, color: '#EFE59B'},
     // Add more rooms as needed
   ];
 
