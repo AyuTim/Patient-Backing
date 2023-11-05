@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Box.css';
+import CircleInBox from './CircleInBox';
 
 function Box({ title, content }) {
   return (
@@ -10,7 +11,8 @@ function Box({ title, content }) {
   );
 }
 
-function RoomBox({ roomNumber, color, onClick }) {
+
+function RoomBox({ wheelchair, roomNumber, color, onClick }) {
   return (
     <div
       className="room-box"
@@ -18,6 +20,7 @@ function RoomBox({ roomNumber, color, onClick }) {
       onClick={() => onClick(roomNumber)}
     >
       Room {roomNumber}
+      {wheelchair}
     </div>
   );
 }
@@ -29,15 +32,16 @@ function RoomGrid() {
     setSelectedRoom(roomNumber);
   };
 
+
   const roomsData = [
-    { roomNumber: 101, color: 'red' },
-    { roomNumber: 102, color: 'blue' },
-    { roomNumber: 103, color: 'green' },
-    { roomNumber: 104, color: 'purple' },
-    { roomNumber: 105, color: 'orange' },
-    { roomNumber: 106, color: 'teal' },
-    { roomNumber: 107, color: 'pink' },
-    { roomNumber: 108, color: 'brown' },
+    { roomNumber: 101, color: '#FF6F60', wheelchair: 1 },
+    { roomNumber: 102, color: '#E2E2E2', wheelchair: 1},
+    { roomNumber: 103, color: '#96E5B6', wheelchair: 1 },
+    { roomNumber: 104, color: '#E2E2E2', wheelchair: 1 },
+    { roomNumber: 105, color: '#EFE59B', wheelchair: 1 },
+    { roomNumber: 106, color: '#96E5B6', wheelchair: 1 },
+    { roomNumber: 107, color: '#FF6F60', wheelchair: 1 },
+    { roomNumber: 108, color: '#EFE59B', wheelchair: 1 },
     // Add more rooms as needed
   ];
 
@@ -48,6 +52,7 @@ function RoomGrid() {
           <RoomBox
             roomNumber={room.roomNumber}
             color={room.color}
+            wheelchair={room.wheelchair}
             onClick={handleBoxClick}
           />
         </div>
@@ -57,6 +62,7 @@ function RoomGrid() {
       </div>
     </div>
   );
+  
 }
 
 export default RoomGrid;

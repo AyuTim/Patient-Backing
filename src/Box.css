@@ -10,20 +10,25 @@
   }
   
   .room-box {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }
   
   .box {
     width: 100px;
     height: 100px;
-    border: 1px solid #000;
     margin: 10px;
     padding: 10px;
   }
   
+  .circle {
+    width: 18px;
+    height: 18px;
+    background-color: #b9e0f9;
+    border-radius: 50%;
+  }
