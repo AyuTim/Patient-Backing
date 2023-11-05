@@ -64,7 +64,7 @@ function QR() {
     return (
         <div className="QR">
             <button onClick={handlePostRequest}>Submit Data</button>
-            <h1>QR Code Scanning in React</h1>
+            <h1>Scan Patient QR Code</h1>
             {scanResult
                 ? (
                     <div>
