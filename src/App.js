@@ -17,12 +17,12 @@ function App() {
           </div>
         </div>
 
-        <div className="QR-Tab"> <center>
-          <Link to="/QR">QR Code</Link>
-          <Link to="/Floor">       Floors</Link>
-          </center>
+          <div className="QR-Tab"> <center>
+            <Link to="/QR">QR Code</Link>
+            <Link to="/Floor">       Floors</Link>
+            </center>
+          </div>
         </div>
-
         <Routes>
           <Route path="/QR" element={<QR />} />
         </Routes>
@@ -30,7 +30,6 @@ function App() {
         <Routes>
           <Route path="/Floor" element={<Floor />} />
         </Routes>
-      </div>
       <script></script>
     </Router>
   );
