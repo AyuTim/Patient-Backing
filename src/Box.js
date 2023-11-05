@@ -1,4 +1,3 @@
-
 const Box = ({ title, content}) => {
     return (
 
