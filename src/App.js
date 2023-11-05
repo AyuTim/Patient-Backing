@@ -14,7 +14,7 @@ function App() {
               <br></br>
             </div>
           </div>
-        </div>epic
+        </div>
 
         <div className="QR-Tab"> <center>
           <Link to="/QR">QR</Link>
